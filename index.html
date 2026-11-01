@@ -7,21 +7,6 @@
   <link rel="icon" href="imagenes/favicon_red.ico" type="image/x-icon" />
   <style>
     
-    .doc-link {
-      display: block;
-      margin-top: 10px;
-      color: #1e3a8a;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: color 0.2s ease;
-    }
-
-    .doc-link:hover {
-      color: #3b82f6;
-      text-decoration: underline;
-    }
-
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: linear-gradient(135deg, #1e3a8a, #60a5fa);
@@ -137,6 +122,27 @@
 
     .thumbnail-container:hover .play-button {
       opacity: 1;
+    }
+
+        /* Enlace pegado debajo de la imagen */
+    .doc-link {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      background: #1e3a8a;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 10px 12px;
+      border-radius: 0 0 8px 8px;
+      letter-spacing: 0.3px;
+      transition: background-color 0.2s ease;
+    }
+
+    .doc-link:hover {
+      background: #2563eb;
+      text-decoration: none;
     }
 
     tr:nth-child(even) {
