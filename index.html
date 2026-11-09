@@ -104,7 +104,7 @@
     }
 
     .thumbnail-container img:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
@@ -126,7 +126,7 @@
       opacity: 1;
     }
 
-    /* Contenedor que delimita el ancho exacto tanto de la imagen como del botón */
+    /* Contenedor estándar de video individual */
     .video-card {
       max-width: 500px;
       width: 100%;
@@ -135,8 +135,35 @@
       text-align: center;
     }
 
-    /* Enlace pegado debajo de la imagen */
-    .doc-link {
+    /* Contenedor doble para los dos primeros videos */
+    .dual-video-card {
+      max-width: 850px;
+      width: 100%;
+      margin: 0 auto;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dual-video-grid {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .dual-video-grid .thumbnail-container {
+      flex: 1;
+      max-width: 50% !important;
+    }
+
+    .dual-video-grid .thumbnail-container img {
+      border-radius: 8px 8px 0 0;
+      max-width: 100%;
+    }
+
+    /* Botón compartido que abarca el ancho total de ambos videos */
+    .dual-video-card .doc-link {
       display: block;
       width: 100%;
       box-sizing: border-box;
@@ -149,10 +176,10 @@
       border-radius: 0 0 8px 8px;
       letter-spacing: 0.3px;
       transition: background-color 0.2s ease;
-      margin-top: -4px;
+      margin-top: -2px;
     }
 
-    .doc-link:hover {
+    .dual-video-card .doc-link:hover {
       background: #2563eb;
       text-decoration: none;
     }
@@ -223,6 +250,15 @@
         font-size: 12px;
         padding: 8px 10px;
       }
+
+      .dual-video-grid {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .dual-video-grid .thumbnail-container {
+        max-width: 100% !important;
+      }
     }
   </style>
 </head>
@@ -244,28 +280,27 @@
         <th>Vista Previa</th>
       </tr>
 
-      <!-- Registro 1 -->
+      <!-- Registro 1 y 2 en paralelo con enlace compartido -->
       <tr>
         <td>
-          <div class="video-card">
-            <a href="https://drive.google.com/file/d/1fXBXO7d8BrDaufELBeisvDbw5sCRXCYS/view?usp=drive_link" target="_blank" class="thumbnail-container">
-              <img src="https://drive.google.com/thumbnail?id=1nP4a_hHAYARA3ksez7GKuguydT6trJug&sz=w1000" alt="Vista previa">
-              <span class="play-button">Ver Clase</span>
-            </a>
-          </div>
-        </td>
-      </tr>
+          <div class="dual-video-card">
+            <div class="dual-video-grid">
+              <!-- Parte 1 (Izquierda) -->
+              <a href="https://drive.google.com/file/d/1fXBXO7d8BrDaufELBeisvDbw5sCRXCYS/view?usp=drive_link" target="_blank" class="thumbnail-container">
+                <img src="https://drive.google.com/thumbnail?id=1nP4a_hHAYARA3ksez7GKuguydT6trJug&sz=w1000" alt="Vista previa Parte 1">
+                <span class="play-button">Ver Clase (Parte 1)</span>
+              </a>
 
-      <!-- Registro 2 -->
-      <tr>
-        <td>
-          <div class="video-card">
-            <a href="https://drive.google.com/file/d/1a_YI2KZ5LDDwmwRDF_i3fl9et5JcCSdP/view?usp=sharing" target="_blank" class="thumbnail-container">
-              <img src="https://drive.google.com/thumbnail?id=17vhIFuSYxEb_2xx3B0nq5seFTx5wMW-2&sz=w1000" alt="Vista previa">
-              <span class="play-button">Ver Clase</span>
-            </a>
+              <!-- Parte 2 (Derecha) -->
+              <a href="https://drive.google.com/file/d/1a_YI2KZ5LDDwmwRDF_i3fl9et5JcCSdP/view?usp=sharing" target="_blank" class="thumbnail-container">
+                <img src="https://drive.google.com/thumbnail?id=17vhIFuSYxEb_2xx3B0nq5seFTx5wMW-2&sz=w1000" alt="Vista previa Parte 2">
+                <span class="play-button">Ver Clase (Parte 2)</span>
+              </a>
+            </div>
+
+            <!-- Enlace adaptado a todo el ancho inferior -->
             <a href="https://docs.google.com/document/d/1EO15abAfVdXv5kqZ1sCM4he7yYiZUX1pQrRYREXZG_A/edit?usp=sharing" target="_blank" class="doc-link">
-              📄 Contenido de la Clase (Parte 1)
+              📄 Contenido de la Clase (Parte 1 y 2)
             </a>
           </div>
         </td>
