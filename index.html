@@ -6,7 +6,6 @@
   <title>Clases del Curso CCNAv7 [SRWE]</title>
   <link rel="icon" href="imagenes/favicon_red.ico" type="image/x-icon" />
   <style>
-    
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: linear-gradient(135deg, #1e3a8a, #60a5fa);
@@ -91,6 +90,7 @@
     .thumbnail-container {
       position: relative;
       display: inline-block;
+      width: 100%;
     }
 
     .thumbnail-container img {
@@ -98,11 +98,13 @@
       max-width: 500px;
       height: auto;
       border-radius: 8px;
+      display: block;
+      margin: 0 auto;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .thumbnail-container img:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
@@ -124,7 +126,7 @@
       opacity: 1;
     }
 
-/* Contenedor que delimita el ancho exacto tanto de la imagen como del botón */
+    /* Contenedor que delimita el ancho exacto tanto de la imagen como del botón */
     .video-card {
       max-width: 500px;
       width: 100%;
@@ -147,7 +149,7 @@
       border-radius: 0 0 8px 8px;
       letter-spacing: 0.3px;
       transition: background-color 0.2s ease;
-      margin-top: -4px; /* Elimina cualquier separación diminuta con la imagen */
+      margin-top: -4px;
     }
 
     .doc-link:hover {
@@ -182,7 +184,7 @@
 
     /* Nota para el video */
     .nota-laboratorio_3 {
-      color: #8B0000; /* rojo oscuro */
+      color: #8B0000;
       font-weight: 600;
       font-size: 14px;
       margin-bottom: 6px;
@@ -242,72 +244,45 @@
         <th>Vista Previa</th>
       </tr>
 
+      <!-- Registro 1 -->
       <tr>
         <td>
           <div class="video-card">
-            
-          <!-- Reproductor del video -->
-          <a href="https://drive.google.com/file/d/1fXBXO7d8BrDaufELBeisvDbw5sCRXCYS/view?usp=drive_link" target="_blank" class="thumbnail-container">
-          <!-- <a href="https://drive.google.com/file/d/1ReBcDW1dvAuLHNZSD-NhqTv-AyWWvaqr/view?usp=sharing" target="_blank" class="thumbnail-container"> -->
-          <!-- <a href="https://www.youtube.com/playlist?list=PLTBHQ9ZlYBWI" target="_blank" class="thumbnail-container"> -->
-            
-           <img src="https://drive.google.com/file/d/1nP4a_hHAYARA3ksez7GKuguydT6trJug/view?usp=drive_link" alt="Vista previa">
-            <!-- <img src="https://img.youtube.com/vi/6FTLwKn_9pI/maxresdefault.jpg" alt="Vista previa"> -->
-            
-            <span class="play-button">Ver Clase</span>
-          </a>
-  
-          <!-- Enlace pegado a la base de la imagen que abre el Google Doc -->
-          <!-- <a href="https://docs.google.com/document/d/1EO15abAfVdXv5kqZ1sCM4he7yYiZUX1pQrRYREXZG_A/edit?usp=sharing" target="_blank" class="doc-link">
-            📄 Contenido de la Clase -->
-          </a>
+            <a href="https://drive.google.com/file/d/1fXBXO7d8BrDaufELBeisvDbw5sCRXCYS/view?usp=drive_link" target="_blank" class="thumbnail-container">
+              <img src="https://drive.google.com/thumbnail?id=1nP4a_hHAYARA3ksez7GKuguydT6trJug&sz=w1000" alt="Vista previa">
+              <span class="play-button">Ver Clase</span>
+            </a>
           </div>
         </td>
       </tr>
 
+      <!-- Registro 2 -->
       <tr>
         <td>
           <div class="video-card">
-            
-          <!-- Reproductor del video -->
-          <a href="https://drive.google.com/file/d/1a_YI2KZ5LDDwmwRDF_i3fl9et5JcCSdP/view?usp=sharing" target="_blank" class="thumbnail-container">
-          <!-- <a href="https://drive.google.com/file/d/1ReBcDW1dvAuLHNZSD-NhqTv-AyWWvaqr/view?usp=sharing" target="_blank" class="thumbnail-container"> -->
-          <!-- <a href="https://www.youtube.com/playlist?list=PLTBHQ9ZlYBWI" target="_blank" class="thumbnail-container"> -->
-            
-           <img src="https://drive.google.com/file/d/17vhIFuSYxEb_2xx3B0nq5seFTx5wMW-2/view?usp=drive_link" alt="Vista previa">
-            <!-- <img src="https://img.youtube.com/vi/6FTLwKn_9pI/maxresdefault.jpg" alt="Vista previa"> -->
-            
-            <span class="play-button">Ver Clase</span>
-          </a>
-  
-          <!-- Enlace pegado a la base de la imagen que abre el Google Doc -->
-          <a href="https://docs.google.com/document/d/1EO15abAfVdXv5kqZ1sCM4he7yYiZUX1pQrRYREXZG_A/edit?usp=sharing" target="_blank" class="doc-link">
-            📄 Contenido de la Clase (Parte 1)-->
-          </a>
+            <a href="https://drive.google.com/file/d/1a_YI2KZ5LDDwmwRDF_i3fl9et5JcCSdP/view?usp=sharing" target="_blank" class="thumbnail-container">
+              <img src="https://drive.google.com/thumbnail?id=17vhIFuSYxEb_2xx3B0nq5seFTx5wMW-2&sz=w1000" alt="Vista previa">
+              <span class="play-button">Ver Clase</span>
+            </a>
+            <a href="https://docs.google.com/document/d/1EO15abAfVdXv5kqZ1sCM4he7yYiZUX1pQrRYREXZG_A/edit?usp=sharing" target="_blank" class="doc-link">
+              📄 Contenido de la Clase (Parte 1)
+            </a>
           </div>
         </td>
       </tr>
       
+      <!-- Registro 3 -->
       <tr>
         <td>
           <div class="video-card">
-          <!-- Reproductor del video -->
-          <!-- <a href="https://drive.google.com/file/d/1ReBcDW1dvAuLHNZSD-NhqTv-AyWWvaqr/view?usp=sharing" target="_blank" class="thumbnail-container"> -->
-          <a href="https://www.youtube.com/playlist?list=PLTBHQ9ZlYBWI" target="_blank" class="thumbnail-container">
-            
-          <!-- <img src="https://lh3.googleusercontent.com/d/1VE896bnV8v7x-jWil_SjezplmR38nnpC" alt="Vista previa"> -->
-            <img src="https://img.youtube.com/vi/6FTLwKn_9pI/maxresdefault.jpg" alt="Vista previa">
-            
-            <span class="play-button">Ver Clase</span>
-          </a>
-  
-          <!-- Enlace pegado a la base de la imagen que abre el Google Doc -->
-          <!-- <a href="https://docs.google.com/document/d/1HF8ikKhUZZ_VOUsre3exPMGUGOHJetUwnX6NVmeQTDk/edit?usp=sharing" target="_blank" class="doc-link">
-            📄 Contenido de la Clase -->
-          </a>
+            <a href="https://www.youtube.com/playlist?list=PLTBHQ9ZlYBWI" target="_blank" class="thumbnail-container">
+              <img src="https://img.youtube.com/vi/6FTLwKn_9pI/maxresdefault.jpg" alt="Vista previa">
+              <span class="play-button">Ver Clase</span>
+            </a>
           </div>
         </td>
       </tr>
+
       <tr>
         <td>
           <a href="https://www.youtube.com/playlist?list=PLHoT75bG_95c" target="_blank" class="thumbnail-container">
@@ -396,7 +371,6 @@
           </a>
         </td>
       </tr>
-
       <tr>
         <td>
           <a href="https://www.youtube.com/playlist?list=PLJobKSX_XEWU" target="_blank" class="thumbnail-container">
