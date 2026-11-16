@@ -1,206 +1,436 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Clases del Curso CCNAv7 [SRWE]</title>
-  <link rel="icon" href="imagenes/favicon_red.ico" type="image/x-icon" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clases CCNAv7 [SRWE] | Instructor Gustavo Spinetti</title>
+  <link rel="icon" type="image/x-icon" href="imagenes/favicon_red.ico">
+
   <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #1e3a8a, #60a5fa);
+    :root {
+      --primary-color: #0b3c5d;      /* Azul Cisco institucional */
+      --secondary-color: #0288d1;    /* Azul dinámico / enlaces */
+      --accent-color: #d92525;       /* Rojo de acento */
+      --bg-color: #f4f7f9;           /* Fondo gris claro limpio */
+      --card-bg: #ffffff;
+      --text-main: #0b3c5d;          /* Títulos y textos principales en azul */
+      --text-muted: #0b3c5d;         /* Subtítulos en azul */
+      --border-color: #e2e8f0;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --transition: all 0.25s ease-in-out;
+    }
+
+    /* MODO OSCURO */
+    body.dark-mode {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #38bdf8;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.5;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
       min-height: 100vh;
-      color: #fff;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px 15px;
       width: 100%;
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      flex: 1;
     }
 
-    .header-content {
+    /* BARRA SUPERIOR DE ACCIONES */
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .btn-action {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 7px 14px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+
+    .btn-action:hover {
+      border-color: var(--secondary-color);
+      color: var(--secondary-color);
+      transform: translateY(-1px);
+    }
+
+    /* HEADER */
+    .header-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 25px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: nowrap;
-      text-align: center;
-      padding-bottom: 20px;
-      border-bottom: 2px solid #e5e7eb;
+      gap: 20px;
+      margin-bottom: 25px;
+      border-top: 5px solid var(--primary-color);
     }
 
-    .logo {
-      width: 120px;
-      height: 120px;
+    /* LOGOS DE CABECERA: MODO CLARO */
+    .header-logo {
+      width: 115px;
+      height: 115px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      margin: 10px;
+      background-color: #ffffff;
       flex-shrink: 0;
+      border: 1px solid rgba(2, 136, 209, 0.45);
+      box-shadow: 
+        0 4px 14px rgba(11, 60, 93, 0.85),
+        0 0 18px rgba(2, 136, 209, 0.65),
+        inset 0 1px 3px rgba(255, 255, 255, 0.4);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
     }
 
-    .header-text {
+    .header-logo:hover {
+      transform: scale(1.03);
+    }
+
+    /* LOGOS DE CABECERA: MODO OSCURO */
+    body.dark-mode .header-logo {
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.9),
+        0 0 22px rgba(255, 255, 255, 0.75),
+        0 0 35px rgba(255, 255, 255, 0.55),
+        0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+    
+    .header-content {
+      text-align: center;
       flex: 1;
-      padding: 10px;
     }
 
-    .header-text h1 {
-      margin: 0;
-      font-size: 28px;
-      color: #1e3a8a;
+    .header-content h1 {
+      font-size: 1.5rem;
+      color: var(--text-main);
+      margin-bottom: 4px;
     }
 
-    .header-text h2, .header-text h3 {
-      margin: 8px 0;
-      font-size: 18px;
-      color: #1e3a8a;
+    .header-content h2 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 4px;
     }
 
-    table {
+    .header-content .instructor {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    /* BARRA DE BÚSQUEDA REDONDEADA Y COMPACTA */
+    .search-wrapper {
+      max-width: 550px;
+      margin: 0 auto 10px auto;
+      position: relative;
       width: 100%;
-      border-collapse: collapse;
-      background: #f8fafc;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 20px 10px 42px;
+      font-size: 0.95rem;
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      background: var(--card-bg);
+      color: var(--text-main);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(2, 136, 209, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    /* CONTADOR DINÁMICO */
+    .search-counter {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      display: none;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+    }
+
+    /* GRID DE CLASES */
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .class-card {
+      background: var(--card-bg);
       border-radius: 12px;
       overflow: hidden;
-      margin-top: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+      position: relative;
+      content-visibility: auto;
     }
 
-    th, td {
-      padding: 12px;
-      font-size: 14px;
-      border-bottom: 1px solid #e0e0e0;
+    .class-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    /* TARJETA DOBLE (PARTE 1 Y PARTE 2) */
+    .dual-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      background-color: #000;
+    }
+
+    .part-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(11, 60, 93, 0.9);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* NOTA SUPERIOR PARA CLASES DE DEMOSTRACIÓN */
+    .demo-note {
+      padding: 10px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #991b1b;
+      background-color: #fef2f2;
+      border-bottom: 1px solid var(--border-color);
       text-align: center;
+      line-height: 1.35;
     }
 
-    th {
-      background: #1e3a8a;
-      color: #fff;
+    body.dark-mode .demo-note {
+      color: #fca5a5;
+      background-color: #450a0a;
+    }
+
+    /* ENLACE DE CONTENIDO ADICIONAL PEGADO DEBAJO DE LA MINIATURA */
+    .doc-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      background: var(--primary-color);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      letter-spacing: 0.3px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      transition: background-color 0.25s ease;
+    }
+
+    .doc-link:hover {
+      background: var(--secondary-color);
+      color: #ffffff;
+    }
+
+    /* BADGE ÚLTIMA CLASE CON RESPLANDOR Y SOMBRA AZUL DEGRADADA */
+    .badge-latest {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background-color: #ea580c !important;
+      color: #ffffff !important;
+      font-size: 0.75rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(2, 136, 209, 0.45);
+      box-shadow: 
+        0 4px 12px rgba(11, 60, 93, 0.85),
+        0 0 16px rgba(2, 136, 209, 0.65),
+        inset 0 1px 3px rgba(255, 255, 255, 0.35);
+      z-index: 5;
+      pointer-events: none;
     }
 
     .thumbnail-container {
       position: relative;
-      display: inline-block;
       width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background-color: #000;
+      overflow: hidden;
+      display: block;
     }
 
     .thumbnail-container img {
-      width: 100%;
-      max-width: 500px;
-      height: auto;
-      border-radius: 8px;
-      display: block;
-      margin: 0 auto;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .thumbnail-container img:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .play-button {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(30, 58, 138, 0.8);
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 5px;
-      font-size: 14px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
     }
 
-    .thumbnail-container:hover .play-button {
+    .class-card:hover .thumbnail-container img {
+      transform: scale(1.03);
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .thumbnail-container:hover .play-overlay {
       opacity: 1;
     }
 
-    /* Contenedor estándar de video individual */
-    .video-card {
-      max-width: 500px;
-      width: 100%;
-      margin: 0 auto;
-      display: inline-block;
-      text-align: center;
-    }
-
-    /* Contenedor doble para los dos primeros videos */
-    .dual-video-card {
-      max-width: 850px;
-      width: 100%;
-      margin: 0 auto;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .dual-video-grid {
+    .play-btn-circle {
+      background: rgba(11, 60, 93, 0.95);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
       display: flex;
-      gap: 12px;
-      width: 100%;
+      align-items: center;
       justify-content: center;
+      color: #fff;
+      font-size: 1.4rem;
+      padding-left: 4px;
+      padding-bottom: 4px;
+      line-height: 1;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.9),
+        0 0 22px rgba(255, 255, 255, 0.75),
+        0 0 35px rgba(255, 255, 255, 0.55),
+        0 4px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .dual-video-grid .thumbnail-container {
-      flex: 1;
-      max-width: 50% !important;
+    .dual-card-grid .play-btn-circle {
+      width: 40px;
+      height: 40px;
+      font-size: 1.1rem;
+      padding-left: 3px;
+      padding-bottom: 3px;
     }
-
-    .dual-video-grid .thumbnail-container img {
-      border-radius: 8px 8px 0 0;
-      max-width: 100%;
-    }
-
-    /* Botón compartido que abarca el ancho total de ambos videos */
-    .dual-video-card .doc-link {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      background: #1e3a8a;
+    
+    /* BOTÓN FLOTANTE: VOLVER ARRIBA */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary-color);
       color: #ffffff;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
-      padding: 10px 12px;
-      border-radius: 0 0 8px 8px;
-      letter-spacing: 0.3px;
-      transition: background-color 0.2s ease;
-      margin-top: -2px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: var(--transition);
+      z-index: 100;
     }
 
-    .dual-video-card .doc-link:hover {
-      background: #2563eb;
-      text-decoration: none;
+    .scroll-top-btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
     }
 
-    tr:nth-child(even) {
-      background: #f1f5f9;
-    }
-
-    tr:hover {
-      background: #e0e7ff;
-    }
-
+    /* FOOTER */
     footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 20px;
       text-align: center;
-      margin-top: 20px;
-      font-size: 12px;
-      color: #666;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 40px;
     }
 
     footer a {
-      color: #1e3a8a;
+      color: var(--secondary-color);
       text-decoration: none;
       font-weight: 500;
     }
@@ -209,307 +439,660 @@
       text-decoration: underline;
     }
 
-    /* Nota para el video */
-    .nota-laboratorio_3 {
-      color: #8B0000;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 6px;
-      max-width: 500px;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Responsive adjustments */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .header-content {
+      .header-card {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
       }
-
-      .logo {
-        width: 90px;
-        height: 90px;
+      .header-logo {
+        width: 100px;
+        height: 100px;
       }
-
-      .header-text h1 {
-        font-size: 22px;
-      }
-
-      .header-text h2, .header-text h3 {
-        font-size: 16px;
-      }
-
-      th, td {
-        font-size: 12px;
-        padding: 8px;
-      }
-
-      .play-button {
-        font-size: 12px;
-        padding: 8px 10px;
-      }
-
-      .dual-video-grid {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .dual-video-grid .thumbnail-container {
-        max-width: 100% !important;
+      .classes-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <div class="header-content">
-      <img src="imagenes/logo-circular.jpg" alt="Logo Izquierdo" class="logo logo-left">
-      <div class="header-text">
-        <h1>Clases del Curso de CCNAv7 [SRWE]</h1>
-        <h2>Switches, Routers y Nociones de Redes Inalámbricas</h2>
-        <h2>Inicio: 26 de Julio de 2026 - Horario: Domingos | 1:00 p.m. - 5:00 p.m.</h2>
-        <h1>Instructor Gustavo Spinetti</h1>
-      </div>
-      <img src="imagenes/cisco-netacad.png" alt="Logo Derecho" class="logo logo-right">
+
+    <!-- BARRA SUPERIOR DE ACCIONES -->
+    <div class="top-actions">
+      <button id="themeToggle" class="btn-action" type="button" aria-label="Cambiar tema">
+        🌙 Modo Oscuro
+      </button>
+      <button id="soundToggle" class="btn-action" type="button">🔊 Sonido: ON</button>
     </div>
 
-    <table>
-      <tr>
-        <th>Vista Previa</th>
-      </tr>
+    <!-- ENCABEZADO -->
+    <header class="header-card">
+      <img src="imagenes/logo-circular.jpg" alt="Logo Izquierdo" class="header-logo" width="115" height="115">
+      <div class="header-content">
+        <h1>Clases del Curso de CCNAv7 [SRWE]</h1>
+        <h2>Switches, Routers y Nociones de Redes Inalámbricas</h2>
+        <h2>Inicio: 26 de Julio de 2026 — Horario: Domingos | 1:00 p.m. - 5:00 p.m.</h2>
+        <div class="instructor">Instructor Gustavo Spinetti</div>
+      </div>
+      <img src="imagenes/cisco-netacad.png" alt="Logo Derecho" class="header-logo" width="115" height="115">
+    </header>
 
-      <!-- Ultima Clase Corrección EAP -->
-      <tr>
-        <td>
-          <div class="video-card">
-              
-              <a href="https://drive.google.com/file/d/1tNQg14HB6u4V9vgbUT4Rlc3vrZswmpzK/view?usp=sharing" target="_blank" class="thumbnail-container">
-                <img src="https://drive.google.com/file/d/1a3XFSK-BDqmuEyPaVf-B9gZGXGEMvAC3/view?usp=sharing" alt="Vista previa">
-                <span class="play-button">Ver Clase</span>
-              </a>
+    <!-- FORMULARIO DE BÚSQUEDA -->
+    <section class="search-wrapper">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input 
+        type="search" 
+        id="courseSearch" 
+        class="search-input" 
+        placeholder="Buscar clase por número, tema o palabra clave..."
+        aria-label="Buscar clases por palabra clave o número"
+        autocomplete="off"
+      >
+    </section>
 
-            <!-- Enlace adaptado a todo el ancho inferior -->
-            <a href="https://docs.google.com/document/d/1nq2Ns5RhImwKeonwdxw8Y8hfw53SQJcYGTdpDi6r-Es/edit?usp=sharing" target="_blank" class="doc-link">
-              📄 Contenido de la Clase
-            </a>
+    <!-- CONTADOR DINÁMICO DE RESULTADOS -->
+    <div id="searchCounter" class="search-counter">
+      Mostrando 22 de 22 clases
+    </div>
+
+    <!-- MENSAJE DE ESTADO: SIN RESULTADOS -->
+    <div id="noResults" class="no-results" role="status" aria-live="polite">
+      No se encontraron clases que coincidan con tu búsqueda.
+    </div>
+
+    <!-- LISTADO DE CLASES EN GRID (ORDEN DESCENDENTE: MÁS RECIENTE PRIMERO) -->
+    <main class="classes-grid" id="classesGrid">
+
+      <!-- Última Clase: Corrección EAP (Google Drive + Documento) -->
+      <article
+        class="class-card"
+        data-class="19"
+        data-title="Clase 19 SRWE Corrección EAP"
+        data-date=""
+        data-keywords="clase 19 ultima clase correccion eap ccna srwe switches routers wireless contenido documento google drive"
+      >
+        <a href="https://drive.google.com/file/d/1tNQg14HB6u4V9vgbUT4Rlc3vrZswmpzK/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://drive.google.com/thumbnail?id=1a3XFSK-BDqmuEyPaVf-B9gZGXGEMvAC3&sz=w1000" alt="Corrección EAP SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
           </div>
-        </td>
-      </tr>
+        </a>
+        <a href="https://docs.google.com/document/d/1nq2Ns5RhImwKeonwdxw8Y8hfw53SQJcYGTdpDi6r-Es/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="doc-link">
+          📄 Contenido de la Clase
+        </a>
+      </article>
 
-      <!-- Registro 1 y 2 en paralelo con enlace compartido -->
-      <tr>
-        <td>
-          <div class="dual-video-card">
-            <div class="dual-video-grid">
-              <!-- Parte 1 (Izquierda) -->
-              <a href="https://drive.google.com/file/d/1a_YI2KZ5LDDwmwRDF_i3fl9et5JcCSdP/view?usp=sharing" target="_blank" class="thumbnail-container">
-                <img src="https://drive.google.com/thumbnail?id=17vhIFuSYxEb_2xx3B0nq5seFTx5wMW-2&sz=w1000" alt="Vista previa Parte 2">
-                <span class="play-button">Ver Clase (Parte 1)</span>
-              </a>
-
-              <!-- Parte 2 (Derecha) -->
-              <a href="https://drive.google.com/file/d/1fXBXO7d8BrDaufELBeisvDbw5sCRXCYS/view?usp=drive_link" target="_blank" class="thumbnail-container">
-                <img src="https://drive.google.com/thumbnail?id=1nP4a_hHAYARA3ksez7GKuguydT6trJug&sz=w1000" alt="Vista previa Parte 1">
-                <span class="play-button">Ver Clase (Parte 2)</span>
-              </a>
+      <!-- Clase 18 (Parte 1 y Parte 2 en paralelo + Documento compartido) -->
+      <article
+        class="class-card"
+        data-class="18"
+        data-title="Clase 18 SRWE Parte 1 y Parte 2"
+        data-date=""
+        data-keywords="clase 18 parte 1 parte 2 ccna srwe switches routers wireless contenido documento google drive"
+      >
+        <div class="dual-card-grid">
+          <a href="https://drive.google.com/file/d/1a_YI2KZ5LDDwmwRDF_i3fl9et5JcCSdP/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+            <span class="part-badge">Parte 1</span>
+            <img src="https://drive.google.com/thumbnail?id=17vhIFuSYxEb_2xx3B0nq5seFTx5wMW-2&sz=w1000" alt="Clase 18 SRWE Parte 1" loading="lazy">
+            <div class="play-overlay">
+              <span class="play-btn-circle" aria-hidden="true">▶</span>
             </div>
+          </a>
+          <a href="https://drive.google.com/file/d/1fXBXO7d8BrDaufELBeisvDbw5sCRXCYS/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+            <span class="part-badge">Parte 2</span>
+            <img src="https://drive.google.com/thumbnail?id=1nP4a_hHAYARA3ksez7GKuguydT6trJug&sz=w1000" alt="Clase 18 SRWE Parte 2" loading="lazy">
+            <div class="play-overlay">
+              <span class="play-btn-circle" aria-hidden="true">▶</span>
+            </div>
+          </a>
+        </div>
+        <a href="https://docs.google.com/document/d/1EO15abAfVdXv5kqZ1sCM4he7yYiZUX1pQrRYREXZG_A/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="doc-link">
+          📄 Contenido de la Clase (Parte 1 y 2)
+        </a>
+      </article>
 
-            <!-- Enlace adaptado a todo el ancho inferior -->
-            <a href="https://docs.google.com/document/d/1EO15abAfVdXv5kqZ1sCM4he7yYiZUX1pQrRYREXZG_A/edit?usp=sharing" target="_blank" class="doc-link">
-              📄 Contenido de la Clase (Parte 1 y 2)
-            </a>
+      <!-- Clase 17 -->
+      <article
+        class="class-card"
+        data-class="17"
+        data-title="Clase 17 SRWE"
+        data-date=""
+        data-keywords="clase 17 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLTBHQ9ZlYBWI" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/6FTLwKn_9pI/maxresdefault.jpg" alt="Clase 17 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
           </div>
-        </td>
-      </tr>
-      
-      <!-- Registro 3 -->
-      <tr>
-        <td>
-          <div class="video-card">
-            <a href="https://www.youtube.com/playlist?list=PLTBHQ9ZlYBWI" target="_blank" class="thumbnail-container">
-              <img src="https://img.youtube.com/vi/6FTLwKn_9pI/maxresdefault.jpg" alt="Vista previa">
-              <span class="play-button">Ver Clase</span>
-            </a>
-          </div>
-        </td>
-      </tr>
+        </a>
+      </article>
 
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLHoT75bG_95c" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/dDnyacu0xco/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLVT14vXhALFw" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/jj_il77zL2U/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLN2m0i92ECms" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/4H8yh1vA0_o/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLVJ-O0CDnaAY" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/1KDGl9XQNjE/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLTpHUV6fFb40" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/O8qRDsRO38I/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLdYWwfrbpDsA" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/VaG2KUmwmzo/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLBvRv7RaWXRo" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/g0RjrCk2yMc/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLIZxA6XYDRFc" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/ygdC6p45gTo/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLJjLi0EqwNUg" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/yNEAa7YN1gY/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLDTbs67XIYd0" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/F6dmwZkKWNM/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLBt50reUkDls" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/sB2T7DlaJ3k/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLJobKSX_XEWU" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/bxr-TzQZqz4/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLKEh4Z7RPSdo" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/oipMN7qxC28/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLfXaCUnUv3ds" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/14fwaG4gLe0/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLUpQxI6Cynww" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/HbQknNFUA1s/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.youtube.com/playlist?list=PLSbq51cSeme0" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/DYVfpOr3v5Q/maxresdefault.jpg" alt="Vista previa">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td style="max-width: 500px; margin: auto;">
-          <div class="nota-laboratorio_3">
-            Demostración del Cálculo de la Cálculo de Segmentación IPv6 🌐 
-            8va. Clase del Curso de CCNA (ITN) 🌐 [19/Abril/2026]
+      <!-- Clase 16 -->
+      <article
+        class="class-card"
+        data-class="16"
+        data-title="Clase 16 SRWE"
+        data-date=""
+        data-keywords="clase 16 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLHoT75bG_95c" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/dDnyacu0xco/maxresdefault.jpg" alt="Clase 16 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
           </div>
-          <a href="https://youtu.be/YL6ThPXteX4" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/YL6ThPXteX4/maxresdefault.jpg" alt="Subnetting SRWE">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
+        </a>
+      </article>
 
-      <tr>
-        <td style="max-width: 500px; margin: auto;">
-          <div class="nota-laboratorio_3">
-            Demostración del Cálculo de la Máscara de Subred de Longitud Variable [VLSM] 🌐 
-            7ma. Clase del Curso de CCNA (ITN) 🌐 [12/Abril/2026]
+      <!-- Clase 15 -->
+      <article
+        class="class-card"
+        data-class="15"
+        data-title="Clase 15 SRWE"
+        data-date=""
+        data-keywords="clase 15 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLVT14vXhALFw" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/jj_il77zL2U/maxresdefault.jpg" alt="Clase 15 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
           </div>
-          <a href="https://youtu.be/6qtIZfycgb0" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/6qtIZfycgb0/maxresdefault.jpg" alt="Subnetting SRWE">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
+        </a>
+      </article>
 
-      <tr>
-        <td style="max-width: 500px; margin: auto;">
-          <div class="nota-laboratorio_3">
-            Demostración del Cálculo de Subredes IPv4 [Subnetting] 🌐 
-            5ta. Clase del Curso de CCNA (ITN) 🌐 [29/Marzo/2026]
+      <!-- Clase 14 -->
+      <article
+        class="class-card"
+        data-class="14"
+        data-title="Clase 14 SRWE"
+        data-date=""
+        data-keywords="clase 14 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLN2m0i92ECms" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/4H8yh1vA0_o/maxresdefault.jpg" alt="Clase 14 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
           </div>
-          <a href="https://youtu.be/l1sqo3GWPQQ" target="_blank" class="thumbnail-container">
-            <img src="https://img.youtube.com/vi/l1sqo3GWPQQ/maxresdefault.jpg" alt="Subnetting SRWE">
-            <span class="play-button">Ver Clase</span>
-          </a>
-        </td>
-      </tr>
-  
-    </table>
+        </a>
+      </article>
 
-    <footer>
-      <p>Curso CCNAv7 impartido por el Instructor Gustavo Spinetti | Contacto:
-        <a href="mailto:gustavoaspinettim@yahoo.es">gustavoaspinettim@yahoo.es</a>
-      </p>
-    </footer>
+      <!-- Clase 13 -->
+      <article
+        class="class-card"
+        data-class="13"
+        data-title="Clase 13 SRWE"
+        data-date=""
+        data-keywords="clase 13 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLVJ-O0CDnaAY" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/1KDGl9XQNjE/maxresdefault.jpg" alt="Clase 13 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 12 -->
+      <article
+        class="class-card"
+        data-class="12"
+        data-title="Clase 12 SRWE"
+        data-date=""
+        data-keywords="clase 12 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLTpHUV6fFb40" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/O8qRDsRO38I/maxresdefault.jpg" alt="Clase 12 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 11 -->
+      <article
+        class="class-card"
+        data-class="11"
+        data-title="Clase 11 SRWE"
+        data-date=""
+        data-keywords="clase 11 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLdYWwfrbpDsA" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/VaG2KUmwmzo/maxresdefault.jpg" alt="Clase 11 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 10 -->
+      <article
+        class="class-card"
+        data-class="10"
+        data-title="Clase 10 SRWE"
+        data-date=""
+        data-keywords="clase 10 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLBvRv7RaWXRo" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/g0RjrCk2yMc/maxresdefault.jpg" alt="Clase 10 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 09 -->
+      <article
+        class="class-card"
+        data-class="09"
+        data-title="Clase 09 SRWE"
+        data-date=""
+        data-keywords="clase 09 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLIZxA6XYDRFc" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/ygdC6p45gTo/maxresdefault.jpg" alt="Clase 09 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 08 -->
+      <article
+        class="class-card"
+        data-class="08"
+        data-title="Clase 08 SRWE"
+        data-date=""
+        data-keywords="clase 08 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLJjLi0EqwNUg" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/yNEAa7YN1gY/maxresdefault.jpg" alt="Clase 08 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 07 -->
+      <article
+        class="class-card"
+        data-class="07"
+        data-title="Clase 07 SRWE"
+        data-date=""
+        data-keywords="clase 07 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLDTbs67XIYd0" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/F6dmwZkKWNM/maxresdefault.jpg" alt="Clase 07 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 06 -->
+      <article
+        class="class-card"
+        data-class="06"
+        data-title="Clase 06 SRWE"
+        data-date=""
+        data-keywords="clase 06 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLBt50reUkDls" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/sB2T7DlaJ3k/maxresdefault.jpg" alt="Clase 06 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 05 -->
+      <article
+        class="class-card"
+        data-class="05"
+        data-title="Clase 05 SRWE"
+        data-date=""
+        data-keywords="clase 05 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLJobKSX_XEWU" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/bxr-TzQZqz4/maxresdefault.jpg" alt="Clase 05 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 04 -->
+      <article
+        class="class-card"
+        data-class="04"
+        data-title="Clase 04 SRWE"
+        data-date=""
+        data-keywords="clase 04 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLKEh4Z7RPSdo" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/oipMN7qxC28/maxresdefault.jpg" alt="Clase 04 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 03 -->
+      <article
+        class="class-card"
+        data-class="03"
+        data-title="Clase 03 SRWE"
+        data-date=""
+        data-keywords="clase 03 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLfXaCUnUv3ds" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/14fwaG4gLe0/maxresdefault.jpg" alt="Clase 03 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 02 -->
+      <article
+        class="class-card"
+        data-class="02"
+        data-title="Clase 02 SRWE"
+        data-date=""
+        data-keywords="clase 02 ccna srwe switches routers wireless"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLUpQxI6Cynww" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/HbQknNFUA1s/maxresdefault.jpg" alt="Clase 02 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Clase 01 -->
+      <article
+        class="class-card"
+        data-class="01"
+        data-title="Clase 01 SRWE"
+        data-date=""
+        data-keywords="clase 01 ccna srwe switches routers wireless bienvenida"
+      >
+        <a href="https://www.youtube.com/playlist?list=PLSbq51cSeme0" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/DYVfpOr3v5Q/maxresdefault.jpg" alt="Clase 01 SRWE" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Demostración Segmentación IPv6 -->
+      <article
+        class="class-card"
+        data-class="Demo IPv6"
+        data-title="Demostración del Cálculo de Segmentación IPv6"
+        data-date="19/Abril/2026"
+        data-keywords="demostracion calculo segmentacion ipv6 8va clase itn 19 abril 2026 subnetting"
+      >
+        <div class="demo-note">
+          Demostración del Cálculo de Segmentación IPv6 🌐 8va. Clase del Curso de CCNA (ITN) 🌐 [19/Abril/2026]
+        </div>
+        <a href="https://youtu.be/YL6ThPXteX4" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/YL6ThPXteX4/maxresdefault.jpg" alt="Segmentación IPv6" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Demostración VLSM -->
+      <article
+        class="class-card"
+        data-class="Demo VLSM"
+        data-title="Demostración del Cálculo de la Máscara de Subred de Longitud Variable VLSM"
+        data-date="12/Abril/2026"
+        data-keywords="demostracion calculo mascara subred longitud variable vlsm 7ma clase itn 12 abril 2026 subnetting"
+      >
+        <div class="demo-note">
+          Demostración del Cálculo de la Máscara de Subred de Longitud Variable [VLSM] 🌐 7ma. Clase del Curso de CCNA (ITN) 🌐 [12/Abril/2026]
+        </div>
+        <a href="https://youtu.be/6qtIZfycgb0" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/6qtIZfycgb0/maxresdefault.jpg" alt="Cálculo VLSM" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Demostración Subnetting IPv4 -->
+      <article
+        class="class-card"
+        data-class="Demo IPv4"
+        data-title="Demostración del Cálculo de Subredes IPv4 Subnetting"
+        data-date="29/Marzo/2026"
+        data-keywords="demostracion calculo subredes ipv4 subnetting 5ta clase itn 29 marzo 2026"
+      >
+        <div class="demo-note">
+          Demostración del Cálculo de Subredes IPv4 [Subnetting] 🌐 5ta. Clase del Curso de CCNA (ITN) 🌐 [29/Marzo/2026]
+        </div>
+        <a href="https://youtu.be/l1sqo3GWPQQ" target="_blank" rel="noopener noreferrer" class="thumbnail-container">
+          <img src="https://img.youtube.com/vi/l1sqo3GWPQQ/maxresdefault.jpg" alt="Subnetting IPv4" loading="lazy">
+          <div class="play-overlay">
+            <span class="play-btn-circle" aria-hidden="true">▶</span>
+          </div>
+        </a>
+      </article>
+
+    </main>
+
   </div>
+
+  <!-- BOTÓN FLOTANTE VOLVER ARRIBA -->
+  <button id="scrollTopBtn" class="scroll-top-btn" title="Volver arriba" aria-label="Volver arriba">
+    ↑
+  </button>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Curso CCNAv7 impartido por el Instructor Gustavo Spinetti | Contacto: 
+      <a href="mailto:gustavoaspinettim@yahoo.es">gustavoaspinettim@yahoo.es</a>
+    </p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('courseSearch');
+      const cards = Array.from(document.querySelectorAll('.class-card'));
+      const noResults = document.getElementById('noResults');
+      const searchCounter = document.getElementById('searchCounter');
+      const themeToggle = document.getElementById('themeToggle');
+      const soundToggle = document.getElementById('soundToggle');
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      const totalCards = cards.length;
+
+      // 1. ASIGNACIÓN AUTOMÁTICA DEL BADGE "ÚLTIMA CLASE" A LA PRIMERA TARJETA
+      if (cards.length > 0) {
+        const firstCard = cards[0];
+        const thumbnailBox = firstCard.querySelector('.thumbnail-container') || firstCard;
+        if (!thumbnailBox.querySelector('.badge-latest')) {
+          const badge = document.createElement('span');
+          badge.className = 'badge-latest';
+          badge.textContent = 'Última clase';
+          thumbnailBox.appendChild(badge);
+        }
+      }
+
+      // 2. ACTUALIZACIÓN DEL CONTADOR DE CLASES
+      const updateCounter = (count) => {
+        if (!searchCounter) return;
+        if (searchInput && searchInput.value.trim()) {
+          searchCounter.textContent = `Mostrando ${count} de ${totalCards} clases`;
+        } else {
+          searchCounter.textContent = `Mostrando ${totalCards} de ${totalCards} clases`;
+        }
+      };
+      updateCounter(totalCards);
+
+      // 3. FUNCIÓN DE BÚSQUEDA Y FILTRADO EN TIEMPO REAL
+      const normalizeText = (text) => {
+        return (text || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+      };
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = normalizeText(e.target.value.trim());
+          let matchesCount = 0;
+
+          cards.forEach((card) => {
+            const searchableContent = [
+              card.getAttribute('data-class'),
+              card.getAttribute('data-title'),
+              card.getAttribute('data-date'),
+              card.getAttribute('data-keywords')
+            ].join(' ');
+
+            const normalizedContent = normalizeText(searchableContent);
+
+            if (!query || normalizedContent.includes(query)) {
+              card.style.display = 'flex';
+              matchesCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          updateCounter(matchesCount);
+          if (noResults) {
+            noResults.style.display = matchesCount === 0 ? 'block' : 'none';
+          }
+        });
+      }
+
+      // 4. CONTROL DE MODO OSCURO CON LOCALSTORAGE (CLAVE INDEPENDIENTE PARA SRWE)
+      const savedTheme = localStorage.getItem('theme_srwe_dom');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.textContent = '☀️ Modo Claro';
+      }
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('dark-mode');
+          const isDark = document.body.classList.contains('dark-mode');
+          themeToggle.textContent = isDark ? '☀️ Modo Claro' : '🌙 Modo Oscuro';
+          localStorage.setItem('theme_srwe_dom', isDark ? 'dark' : 'light');
+        });
+      }
+
+      // 5. BOTÓN FLOTANTE "VOLVER ARRIBA"
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // 6. PROTECCIÓN ANTI-COPIA DE IMÁGENES
+      document.addEventListener('contextmenu', (e) => {
+        if (e.target.nodeName === 'IMG') e.preventDefault();
+      });
+
+      document.addEventListener('dragstart', (e) => {
+        if (e.target.nodeName === 'IMG') e.preventDefault();
+      });
+
+      // 7. SONIDO SUAVE DE BRISA / VIENTO + CONTROL ON/OFF
+      let audioCtx = null;
+      let windBuffer = null;
+      let soundEnabled = localStorage.getItem('hover_sound') !== 'off';
+
+      const updateSoundButton = () => {
+        if (soundToggle) {
+          soundToggle.textContent = soundEnabled ? '🔊 Sonido: ON' : '🔇 Sonido: OFF';
+        }
+      };
+      updateSoundButton();
+
+      const setupAudio = () => {
+        if (!audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContext();
+
+          const duration = 0.35;
+          const bufferSize = Math.floor(audioCtx.sampleRate * duration);
+          windBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+          const output = windBuffer.getChannelData(0);
+
+          let lastOut = 0.0;
+          for (let i = 0; i < bufferSize; i++) {
+            const white = Math.random() * 2 - 1;
+            output[i] = (lastOut + (0.04 * white)) / 1.04;
+            lastOut = output[i];
+            output[i] *= 4.0;
+          }
+        }
+        if (audioCtx.state === 'suspended') {
+          return audioCtx.resume();
+        }
+        return Promise.resolve();
+      };
+
+      const playHoverSound = () => {
+        if (!soundEnabled) return;
+        setupAudio().then(() => {
+          const now = audioCtx.currentTime;
+          const duration = 0.35;
+
+          const noiseSource = audioCtx.createBufferSource();
+          noiseSource.buffer = windBuffer;
+
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(320, now);
+          filter.frequency.exponentialRampToValueAtTime(620, now + duration * 0.45);
+          filter.frequency.exponentialRampToValueAtTime(260, now + duration);
+
+          const gainNode = audioCtx.createGain();
+          gainNode.gain.setValueAtTime(0.001, now);
+          gainNode.gain.linearRampToValueAtTime(0.55, now + duration * 0.35);
+          gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+          noiseSource.connect(filter);
+          filter.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+
+          noiseSource.start(now);
+          noiseSource.stop(now + duration);
+        }).catch(() => {});
+      };
+
+      ['click', 'keydown', 'touchstart'].forEach((evt) => {
+        document.addEventListener(evt, () => { setupAudio(); }, { once: true });
+      });
+
+      if (soundToggle) {
+        soundToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          soundEnabled = !soundEnabled;
+          localStorage.setItem('hover_sound', soundEnabled ? 'on' : 'off');
+          updateSoundButton();
+          if (soundEnabled) {
+            playHoverSound();
+          }
+        });
+      }
+
+      document.querySelectorAll('.thumbnail-container').forEach((thumb) => {
+        thumb.addEventListener('mouseenter', playHoverSound);
+      });
+    });
+  </script>
+
 </body>
 </html>
